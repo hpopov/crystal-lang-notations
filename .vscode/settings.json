@@ -11,4 +11,5 @@
     },
     "typescript.tsdk": "node_modules/typescript/lib",
     "files.trimTrailingWhitespace": true,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true
 }

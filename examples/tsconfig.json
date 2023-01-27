@@ -5,7 +5,8 @@
       "reflect-metadata", "webpack-env"
     ],
     "declaration": false,
-    "declarationMap": false
+    "declarationMap": false,
+    "experimentalDecorators": true,
   },
   "include": [
     "./server/**/*.ts"
