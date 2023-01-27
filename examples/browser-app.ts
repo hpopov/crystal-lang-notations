@@ -18,6 +18,7 @@ import "reflect-metadata";
 
 import runCircleGraph from "./circlegraph/src/standalone";
 import runClassDiagram from "./classdiagram/src/standalone";
+import runCrystalActivity from "./crystalactivity/src/standalone";
 import runRandomGraph from "./random-graph/src/standalone";
 import runRandomGraphDistributed from "./random-graph-distributed/src/standalone";
 import runSvgPreRendered from "./svg/src/standalone";
@@ -30,6 +31,8 @@ if (appDiv) {
         runCircleGraph();
     else if (appMode === 'class-diagram')
         runClassDiagram();
+    else if (appMode === 'crystal-activity')
+        runCrystalActivity();
     else if (appMode === 'random-graph')
         runRandomGraph();
     else if (appMode === 'random-graph-distributed')
