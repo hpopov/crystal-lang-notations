@@ -7,6 +7,6 @@ ports:
 
 tasks:
   - init: |
-      yarn
+      yarn --cwd examples
     command: |
       yarn --cwd examples start
