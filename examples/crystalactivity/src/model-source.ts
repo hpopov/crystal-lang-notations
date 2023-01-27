@@ -171,7 +171,7 @@ export class ClassDiagramModelSource extends LocalModelSource {
                                 <SLabel>{
                                     id: 'node0_ticon',
                                     type: 'label:icon',
-                                    text: 'C'
+                                    text: '🔮'
                                 }
                             ]
                         },
@@ -215,7 +215,7 @@ export class ClassDiagramModelSource extends LocalModelSource {
                                 <SLabel>{
                                     id: 'node1_ticon',
                                     type: 'label:icon',
-                                    text: 'C'
+                                    text: '💠'
                                 },
                             ]
                         },
@@ -259,7 +259,7 @@ export class ClassDiagramModelSource extends LocalModelSource {
                                 <SLabel>{
                                     id: 'node2_ticon',
                                     type: 'label:icon',
-                                    text: 'C'
+                                    text: '😒'
                                 },
                             ]
                         },

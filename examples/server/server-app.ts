@@ -20,9 +20,19 @@ import { ElkFactory, ElkLayoutEngine } from 'sprotty-elk/lib/elk-layout';
 import { SocketElkServer } from 'sprotty-elk/lib/node';
 import { Action, ActionMessage, DiagramServer, DiagramServices } from 'sprotty-protocol';
 import { RandomGraphGenerator } from './random-graph-generator';
+var livereload = require("livereload");
+var connectLiveReload = require("connect-livereload");
+
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
 
 const serverApp = express();
 serverApp.use(express.json());
+serverApp.use(connectLiveReload());
 
 // POST endpoint for fetching random graphs
 // Note: This approach works only for the initial RequestModelAction, but not for further
