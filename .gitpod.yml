@@ -4,9 +4,6 @@ ports:
   - port: 5008
     name: ELK Server
     onOpen: ignore
-  - port: 35729
-    name: LiveReload server
-    onOpen: ignore
 
 tasks:
   - init: |
