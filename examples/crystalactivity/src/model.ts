@@ -15,11 +15,10 @@
  ********************************************************************************/
 
 import {
-    SShapeElement, Expandable, RectangularNode, Nameable, SLabel, WithEditableLabel, isEditableLabel,
-    boundsFeature, layoutContainerFeature, layoutableChildFeature, fadeFeature
+    boundsFeature, Expandable, fadeFeature, isEditableLabel, layoutableChildFeature, layoutContainerFeature, Nameable, RectangularNode, SLabel, SShapeElement, WithEditableLabel
 } from 'sprotty';
 
-export class ClassNode extends RectangularNode implements Expandable, Nameable, WithEditableLabel {
+export class ActivityNode extends RectangularNode implements Expandable, Nameable, WithEditableLabel {
     expanded: boolean = false;
 
     get editableLabel() {

@@ -32,8 +32,8 @@
 }
 
 .node-class {
-    fill: #cdc;
-    stroke: #152;
+    fill: #eeb;
+    stroke: #541;
 }
 
 .node-package {
@@ -60,7 +60,7 @@
 }
 
 .sprotty-icon {
-    fill: #153;
+    fill: #eed;
     stroke-width: 0;
 }
 

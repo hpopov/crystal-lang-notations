@@ -16,20 +16,15 @@
 import '@vscode/codicons/dist/codicon.css';
 import { Container, ContainerModule } from "inversify";
 import {
-    TYPES, configureViewerOptions, SGraphView, SLabelView, SCompartmentView, JumpingPolylineEdgeView,
-    ConsoleLogger, LogLevel, loadDefaultModules, HtmlRootView, PreRenderedView, ExpandButtonView,
-    SRoutingHandleView, PreRenderedElement, HtmlRoot, SGraph, configureModelElement, SLabel,
-    SCompartment, SEdge, SButton, SRoutingHandle, RevealNamedElementActionProvider,
-    CenterGridSnapper, expandFeature, nameFeature, withEditLabelFeature, editLabelFeature,
-    RectangularNode, BezierCurveEdgeView, SBezierCreateHandleView, SBezierControlHandleView
+    BezierCurveEdgeView, CenterGridSnapper, configureModelElement, configureViewerOptions, ConsoleLogger, editLabelFeature, ExpandButtonView, expandFeature, HtmlRoot, HtmlRootView, JumpingPolylineEdgeView, loadDefaultModules, LogLevel, nameFeature, PreRenderedElement, PreRenderedView, RevealNamedElementActionProvider, SBezierControlHandleView, SBezierCreateHandleView, SButton, SCompartment, SCompartmentView, SEdge, SGraph, SGraphView, SLabel, SLabelView, SRoutingHandle, SRoutingHandleView, TYPES, withEditLabelFeature
 } from 'sprotty';
 import edgeIntersectionModule from "sprotty/lib/features/edge-intersection/di.config";
-import { IconView, NodeView} from "./views";
-import { PopupModelProvider } from "./popup";
-import { ClassDiagramModelSource } from './model-source';
-import { ClassDiagramLabelValidator, ClassDiagramLabelValidationDecorator } from './label-validation';
-import { Icon, ClassNode, ClassLabel, PropertyLabel } from "./model";
 import { BezierMouseListener } from 'sprotty/lib/features/routing/bezier-edge-router';
+import { ClassDiagramLabelValidationDecorator, ClassDiagramLabelValidator } from './label-validation';
+import { ActivityNode, ClassLabel, Icon, PropertyLabel } from "./model";
+import { ActivityDiagramModelSource } from './model-source';
+import { PopupModelProvider } from "./popup";
+import { IconView, NodeView as ActivityNodeView } from "./views";
 
 export default (containerId: string) => {
     require("sprotty/css/sprotty.css");
@@ -38,7 +33,7 @@ export default (containerId: string) => {
     require("../css/diagram.css");
 
     const crystalDiagramModule = new ContainerModule((bind, unbind, isBound, rebind) => {
-        bind(TYPES.ModelSource).to(ClassDiagramModelSource).inSingletonScope();
+        bind(TYPES.ModelSource).to(ActivityDiagramModelSource).inSingletonScope();
         rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
         rebind(TYPES.LogLevel).toConstantValue(LogLevel.log);
         bind(TYPES.IPopupModelProvider).to(PopupModelProvider);
@@ -51,8 +46,7 @@ export default (containerId: string) => {
 
         const context = { bind, unbind, isBound, rebind };
         configureModelElement(context, 'graph', SGraph, SGraphView);
-        configureModelElement(context, 'node:package', RectangularNode, NodeView);
-        configureModelElement(context, 'node:class', ClassNode, NodeView, {
+        configureModelElement(context, 'node:activity', ActivityNode, ActivityNodeView, {
             enable: [expandFeature, nameFeature, withEditLabelFeature]
         });
         configureModelElement(context, 'label:heading', ClassLabel, SLabelView, {

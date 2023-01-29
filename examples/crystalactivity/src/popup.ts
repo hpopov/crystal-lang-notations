@@ -19,7 +19,7 @@ import {
     TYPES, IModelFactory, IPopupModelProvider
 } from 'sprotty';
 import { PreRenderedElement, RequestPopupModelAction, SModelElement, SModelRoot } from "sprotty-protocol";
-import { ClassNode } from "./model";
+import { ActivityNode } from "./model";
 
 @injectable()
 export class PopupModelProvider implements IPopupModelProvider {
@@ -27,8 +27,8 @@ export class PopupModelProvider implements IPopupModelProvider {
     @inject(TYPES.IModelFactory) modelFactory: IModelFactory;
 
     getPopupModel(request: RequestPopupModelAction, element?: SModelElement): SModelRoot | undefined {
-        if (element !== undefined && element.type === 'node:class') {
-            const node = this.modelFactory.createElement(element) as ClassNode;
+        if (element !== undefined && element.type === 'node:activity') {
+            const node = this.modelFactory.createElement(element) as ActivityNode;
             return {
                 type: 'html',
                 id: 'popup',

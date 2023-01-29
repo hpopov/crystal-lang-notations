@@ -17,10 +17,10 @@
 /** @jsx svg */
 import { svg } from 'sprotty/lib/lib/jsx';
 
-import { RenderingContext, IView, RectangularNodeView, SNode, IViewArgs } from 'sprotty';
-import { VNode } from "snabbdom";
-import { Icon } from './model';
 import { injectable } from 'inversify';
+import { VNode } from "snabbdom";
+import { IView, IViewArgs, RectangularNodeView, RenderingContext, SNode } from 'sprotty';
+import { Icon } from './model';
 
 @injectable()
 export class NodeView extends RectangularNodeView {
@@ -30,10 +30,10 @@ export class NodeView extends RectangularNodeView {
         }
         return <g>
             <rect class-sprotty-node={true}
-                  class-node-package={node.type === 'node:package'}
-                  class-node-class={node.type === 'node:class'}
-                  class-mouseover={node.hoverFeedback} class-selected={node.selected}
-                  x="0" y="0" width={Math.max(node.size.width, 0)} height={Math.max(node.size.height, 0)}></rect>
+                class-node-package={node.type === 'node:package'}
+                class-node-class={node.type === 'node:activity'}
+                class-mouseover={node.hoverFeedback} class-selected={node.selected}
+                x="0" y="0" width={Math.max(node.size.width, 0)} height={Math.max(node.size.height, 0)}></rect>
             {context.renderChildren(node)}
         </g>;
     }
@@ -43,14 +43,14 @@ export class NodeView extends RectangularNodeView {
 export class IconView implements IView {
 
     render(element: Icon, context: RenderingContext, args?: IViewArgs): VNode {
-        const radius = this.getRadius();
+        const radius = this.getRadius(element.size);
         return <g>
-            <circle class-sprotty-icon={true} r={radius} cx={radius} cy={radius}></circle>
+            <rect class-sprotty-icon={true} width={element.size.height} height={element.size.height} rx={radius} />
             {context.renderChildren(element)}
         </g>;
     }
 
-    getRadius() {
-        return 16;
+    getRadius(size: { width: number, height: number }) {
+        return ((size.height + size.width) / 2 / 8);
     }
 }
