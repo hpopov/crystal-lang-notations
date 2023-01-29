@@ -9,4 +9,4 @@ tasks:
   - init: |
       yarn --cwd examples
     command: |
-      yarn --cwd examples start
+      yarn --cwd examples dev
